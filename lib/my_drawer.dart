@@ -1,9 +1,8 @@
+import 'constant.dart';
 import 'package:flutter/material.dart';
 import 'package:quran_app/settings.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
-
-import 'constant.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({

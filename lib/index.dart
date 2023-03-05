@@ -1,10 +1,8 @@
-import 'main.dart';
-import 'mydrawer.dart';
 import 'constant.dart';
+import 'my_drawer.dart';
 import 'surah_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:quran_app/arabic_sura_number.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class IndexPage extends StatefulWidget {
   const IndexPage({Key? key}) : super(key: key);
@@ -17,44 +15,49 @@ class _IndexPageState extends State<IndexPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const MyDrawer(),
+      endDrawer: const MyDrawer(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
       floatingActionButton: FloatingActionButton(
         tooltip: 'Go to bookmark',
-        child: const Icon(Icons.bookmark),
-        backgroundColor: Colors.green,
         onPressed: () async {
           fabIsClicked = true;
           if (await readBookmark() == true) {
             Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => SurahBuilder(
-                          arabic: quran[0],
-                          sura: bookmarkedSura - 1,
-                          suraName: arabicName[bookmarkedSura - 1]['name'],
-                          ayah: bookmarkedAyah,
-                        )));
+              context,
+              MaterialPageRoute(
+                builder: (context) => SurahBuilder(
+                  arabic: quran[0],
+                  sura: bookmarkedSura - 1,
+                  suraName: arabicName[bookmarkedSura - 1]['name'],
+                  ayah: bookmarkedAyah,
+                ),
+              ),
+            );
           }
         },
+        foregroundColor: const Color.fromRGBO(254, 249, 205, 1),
+        backgroundColor: const Color.fromRGBO(6, 87, 96, 1),
+        child: const Icon(Icons.bookmark),
       ),
       appBar: AppBar(
         centerTitle: true,
         title: const Text(
-          //"القرآن",
-          "Quran",
+          "القرآن الكريم",
           style: TextStyle(
-              //fontFamily: 'quran',
-              fontSize: 35,
-              fontWeight: FontWeight.bold,
-              shadows: [
-                Shadow(
-                  offset: Offset(1, 1),
-                  blurRadius: 2.0,
-                  color: Color.fromARGB(255, 0, 0, 0),
-                ),
-              ]),
+            fontFamily: 'quran',
+            fontSize: 30,
+            fontWeight: FontWeight.bold,
+            color: Color.fromRGBO(254, 249, 205, 1),
+            shadows: [
+              Shadow(
+                offset: Offset(.5, .5),
+                blurRadius: 1.0,
+                color: Color.fromRGBO(6, 87, 96, 1),
+              )
+            ],
+          ),
         ),
-        backgroundColor: const Color.fromARGB(255, 56, 115, 59),
+        backgroundColor: const Color.fromRGBO(6, 87, 96, 1),
       ),
       body: FutureBuilder(
         future: readJson(),
@@ -82,60 +85,58 @@ class _IndexPageState extends State<IndexPage> {
 
   Container indexCreator(quran, context) {
     return Container(
-      color: const Color.fromARGB(255, 221, 250, 236),
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          fit: BoxFit.cover,
+          image: AssetImage('assets/background.png'),
+        ),
+      ),
       child: ListView(
         children: [
           for (int i = 0; i < 114; i++)
-            Container(
-              color: i % 2 == 0
-                  ? const Color.fromARGB(255, 253, 247, 230)
-                  : const Color.fromARGB(255, 253, 251, 240),
-              child: TextButton(
-                child: Row(
-                  children: [
-                    ArabicSuraNumber(i: i),
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [],
-                      ),
-                    ),
-                    const Expanded(child: SizedBox()),
-                    Text(
+            TextButton(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10),
+                    child: Text(
                       arabicName[i]['name'],
                       style: const TextStyle(
-                          fontSize: 30,
-                          color: Colors.black87,
-                          fontFamily: 'quran',
-                          shadows: [
-                            Shadow(
-                              offset: Offset(.5, .5),
-                              blurRadius: 1.0,
-                              color: Color.fromARGB(255, 130, 130, 130),
-                            )
-                          ]),
+                        fontSize: 30,
+                        color: Color.fromRGBO(254, 249, 205, 1),
+                        fontFamily: 'quran',
+                        shadows: [
+                          Shadow(
+                            offset: Offset(.5, .5),
+                            blurRadius: 1.0,
+                            color: Color.fromRGBO(6, 87, 96, 1),
+                          )
+                        ],
+                      ),
                       textDirection: TextDirection.rtl,
                     ),
-                  ],
-                ),
-                onPressed: () {
-                  fabIsClicked = false;
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => SurahBuilder(
-                              arabic: quran[0],
-                              sura: i,
-                              suraName: arabicName[i]['name'],
-                              ayah: 0,
-                            )),
-                  );
-                },
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  ArabicSuraNumber(i: i),
+                ],
               ),
+              onPressed: () {
+                fabIsClicked = false;
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SurahBuilder(
+                      arabic: quran[0],
+                      sura: i,
+                      suraName: arabicName[i]['name'],
+                      ayah: 0,
+                    ),
+                  ),
+                );
+              },
             ),
         ],
       ),

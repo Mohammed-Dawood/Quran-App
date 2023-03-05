@@ -1,8 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
-
 import 'constant.dart';
+import 'package:flutter/material.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 class SurahBuilder extends StatefulWidget {
   final sura;
@@ -50,7 +48,14 @@ class _SurahBuilderState extends State<SurahBuilder> {
                 style: TextStyle(
                   fontSize: arabicFontSize,
                   fontFamily: arabicFont,
-                  color: const Color.fromARGB(196, 0, 0, 0),
+                  color: const Color.fromRGBO(254, 249, 205, 1),
+                  shadows: const [
+                    Shadow(
+                      offset: Offset(.5, .5),
+                      blurRadius: 1.0,
+                      color: Color.fromRGBO(6, 87, 96, 1),
+                    )
+                  ],
                 ),
               ),
               Column(
@@ -79,8 +84,14 @@ class _SurahBuilderState extends State<SurahBuilder> {
       }
 
     return SafeArea(
+      bottom: false,
       child: Container(
-        color: const Color.fromARGB(255, 253, 251, 240),
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            fit: BoxFit.cover,
+            image: AssetImage('assets/background.png'),
+          ),
+        ),
         child: view
             ? ScrollablePositionedList.builder(
                 itemBuilder: (BuildContext context, int index) {
@@ -89,52 +100,39 @@ class _SurahBuilderState extends State<SurahBuilder> {
                       (index != 0) || (widget.sura == 0) || (widget.sura == 8)
                           ? const Text('')
                           : const RetunBasmala(),
-                      Container(
-                        color: index % 2 != 0
-                            ? const Color.fromARGB(255, 253, 251, 240)
-                            : const Color.fromARGB(255, 253, 247, 230),
-                        child: PopupMenuButton(
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: verseBuilder(index, previousVerses),
+                      PopupMenuButton(
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                            left: 15,
+                            right: 15,
+                          ),
+                          child: verseBuilder(index, previousVerses),
+                        ),
+                        itemBuilder: (context) => [
+                          PopupMenuItem(
+                            onTap: () {
+                              saveBookMark(widget.sura + 1, index);
+                            },
+                            child: const Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Text(
+                                  "إشارة مرجعية",
+                                  style: TextStyle(
+                                    color: Color.fromRGBO(6, 87, 96, 1),
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                Icon(
+                                  Icons.bookmark_add,
+                                  color: Color.fromRGBO(6, 87, 96, 1),
+                                ),
+                              ],
                             ),
-                            itemBuilder: (context) => [
-                                  PopupMenuItem(
-                                    onTap: () {
-                                      saveBookMark(widget.sura + 1, index);
-                                    },
-                                    child: Row(
-                                      children: const [
-                                        Icon(
-                                          Icons.bookmark_add,
-                                          color:
-                                              Color.fromARGB(255, 56, 115, 59),
-                                        ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        Text('Bookmark'),
-                                      ],
-                                    ),
-                                  ),
-                                  PopupMenuItem(
-                                    onTap: () {},
-                                    child: Row(
-                                      //mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                      children: const [
-                                        Icon(
-                                          Icons.share,
-                                          color:
-                                              Color.fromARGB(255, 56, 115, 59),
-                                        ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        Text('Share'),
-                                      ],
-                                    ),
-                                  ),
-                                ]),
+                          ),
+                        ],
                       ),
                     ],
                   );
@@ -155,15 +153,26 @@ class _SurahBuilderState extends State<SurahBuilder> {
                                 ? const RetunBasmala()
                                 : const Text(''),
                             Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding: const EdgeInsets.only(
+                                top: 15,
+                                left: 15,
+                                right: 15,
+                              ),
                               child: Text(
                                 fullSura, //mushaf mode
                                 textDirection: TextDirection.rtl,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
-                                  fontSize: mushafFontSize,
+                                  fontSize: arabicFontSize,
                                   fontFamily: arabicFont,
-                                  color: const Color.fromARGB(196, 44, 44, 44),
+                                  color: const Color.fromRGBO(254, 249, 205, 1),
+                                  shadows: const [
+                                    Shadow(
+                                      offset: Offset(.5, .5),
+                                      blurRadius: 1.0,
+                                      color: Color.fromRGBO(6, 87, 96, 1),
+                                    )
+                                  ],
                                 ),
                               ),
                             ),
@@ -191,34 +200,36 @@ class _SurahBuilderState extends State<SurahBuilder> {
             child: TextButton(
               child: const Icon(
                 Icons.chrome_reader_mode,
-                color: Colors.white,
+                color: Color.fromRGBO(254, 249, 205, 1),
               ),
               onPressed: () {
-                setState(() {
-                  view = !view;
-                });
+                setState(
+                  () {
+                    view = !view;
+                  },
+                );
               },
             ),
           ),
           centerTitle: true,
           title: Text(
-            // widget.
             widget.suraName,
             textAlign: TextAlign.center,
             style: const TextStyle(
-                fontSize: 40,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-                fontFamily: 'quran',
-                shadows: [
-                  Shadow(
-                    offset: Offset(1, 1),
-                    blurRadius: 2.0,
-                    color: Color.fromARGB(255, 0, 0, 0),
-                  ),
-                ]),
+              fontSize: 30,
+              fontWeight: FontWeight.bold,
+              color: Color.fromRGBO(254, 249, 205, 1),
+              fontFamily: 'quran',
+              shadows: [
+                Shadow(
+                  offset: Offset(1, 1),
+                  blurRadius: 2.0,
+                  color: Color.fromRGBO(6, 87, 96, 1),
+                ),
+              ],
+            ),
           ),
-          backgroundColor: const Color.fromARGB(255, 56, 115, 59),
+          backgroundColor: const Color.fromRGBO(6, 87, 96, 1),
         ),
         body: SingleSuraBuilder(LengthOfSura),
       ),
@@ -231,14 +242,28 @@ class RetunBasmala extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(children: [
-      const Center(
-        child: Text(
-          'بسم الله الرحمن الرحيم',
-          style: TextStyle(fontFamily: 'me_quran', fontSize: 30),
-          textDirection: TextDirection.rtl,
+    return const Stack(
+      children: [
+        Center(
+          child: Text(
+            'بسم الله الرحمن الرحيم',
+            style: TextStyle(
+              fontFamily: 'quran',
+              fontSize: 30,
+              fontWeight: FontWeight.bold,
+              color: Color.fromRGBO(254, 249, 205, 1),
+              shadows: [
+                Shadow(
+                  offset: Offset(.5, .5),
+                  blurRadius: 1.0,
+                  color: Color.fromRGBO(6, 87, 96, 1),
+                )
+              ],
+            ),
+            textDirection: TextDirection.rtl,
+          ),
         ),
-      ),
-    ]);
+      ],
+    );
   }
 }
