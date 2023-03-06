@@ -39,37 +39,28 @@ class _SurahBuilderState extends State<SurahBuilder> {
     return Row(
       children: [
         Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Text(
-                widget.arabic[index + previousVerses]['aya_text'],
-                textDirection: TextDirection.rtl,
-                style: TextStyle(
-                  fontSize: arabicFontSize,
-                  fontFamily: arabicFont,
-                  color: const Color.fromRGBO(254, 249, 205, 1),
-                  shadows: const [
-                    Shadow(
-                      offset: Offset(.5, .5),
-                      blurRadius: 1.0,
-                      color: Color.fromRGBO(6, 87, 96, 1),
-                    )
-                  ],
-                ),
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [],
-              ),
-            ],
+          child: Text(
+            widget.arabic[index + previousVerses]['aya_text'],
+            textDirection: TextDirection.rtl,
+            style: TextStyle(
+              fontSize: fontSize2,
+              fontFamily: arabicFont,
+              color: Color.fromARGB(255, 254, 229, 205),
+              shadows: const [
+                Shadow(
+                  offset: Offset(.5, .5),
+                  blurRadius: 1.0,
+                  color: Color.fromRGBO(6, 87, 96, 1),
+                )
+              ],
+            ),
           ),
         ),
       ],
     );
   }
 
-  SafeArea SingleSuraBuilder(LenghtOfSura) {
+  SafeArea SingleSuraBuilder(LengthOfSura) {
     String fullSura = '';
     int previousVerses = 0;
     if (widget.sura + 1 != 1) {
@@ -79,7 +70,7 @@ class _SurahBuilderState extends State<SurahBuilder> {
     }
 
     if (!view)
-      for (int i = 0; i < LenghtOfSura; i++) {
+      for (int i = 0; i < LengthOfSura; i++) {
         fullSura += (widget.arabic[i + previousVerses]['aya_text']);
       }
 
@@ -103,6 +94,7 @@ class _SurahBuilderState extends State<SurahBuilder> {
                       PopupMenuButton(
                         child: Padding(
                           padding: const EdgeInsets.only(
+                            top: 20,
                             left: 15,
                             right: 15,
                           ),
@@ -139,7 +131,7 @@ class _SurahBuilderState extends State<SurahBuilder> {
                 },
                 itemScrollController: itemScrollController,
                 itemPositionsListener: itemPositionsListener,
-                itemCount: LenghtOfSura,
+                itemCount: LengthOfSura,
               )
             : ListView(
                 children: [
@@ -154,7 +146,7 @@ class _SurahBuilderState extends State<SurahBuilder> {
                                 : const Text(''),
                             Padding(
                               padding: const EdgeInsets.only(
-                                top: 15,
+                                top: 20,
                                 left: 15,
                                 right: 15,
                               ),
@@ -163,7 +155,7 @@ class _SurahBuilderState extends State<SurahBuilder> {
                                 textDirection: TextDirection.rtl,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
-                                  fontSize: arabicFontSize,
+                                  fontSize: fontSize2,
                                   fontFamily: arabicFont,
                                   color: const Color.fromRGBO(254, 249, 205, 1),
                                   shadows: const [
@@ -192,13 +184,25 @@ class _SurahBuilderState extends State<SurahBuilder> {
     int LengthOfSura = noOfVerses[widget.sura];
 
     return MaterialApp(
-      theme: ThemeData(primarySwatch: Colors.yellow),
       home: Scaffold(
         appBar: AppBar(
+          actions: [
+            TextButton(
+              child: const Icon(
+                size: 30,
+                Icons.arrow_forward_ios,
+                color: Color.fromRGBO(254, 249, 205, 1),
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
           leading: Tooltip(
             message: 'Mushaf Mode',
             child: TextButton(
               child: const Icon(
+                size: 30,
                 Icons.chrome_reader_mode,
                 color: Color.fromRGBO(254, 249, 205, 1),
               ),
@@ -211,25 +215,11 @@ class _SurahBuilderState extends State<SurahBuilder> {
               },
             ),
           ),
-          centerTitle: true,
           title: Text(
             widget.suraName,
-            textAlign: TextAlign.center,
-            style: const TextStyle(
-              fontSize: 30,
-              fontWeight: FontWeight.bold,
-              color: Color.fromRGBO(254, 249, 205, 1),
-              fontFamily: 'quran',
-              shadows: [
-                Shadow(
-                  offset: Offset(1, 1),
-                  blurRadius: 2.0,
-                  color: Color.fromRGBO(6, 87, 96, 1),
-                ),
-              ],
-            ),
+            style: Theme.of(context).textTheme.displaySmall,
           ),
-          backgroundColor: const Color.fromRGBO(6, 87, 96, 1),
+          backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
         ),
         body: SingleSuraBuilder(LengthOfSura),
       ),
@@ -242,28 +232,22 @@ class RetunBasmala extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Stack(
-      children: [
-        Center(
-          child: Text(
-            'بسم الله الرحمن الرحيم',
-            style: TextStyle(
-              fontFamily: 'quran',
-              fontSize: 30,
-              fontWeight: FontWeight.bold,
-              color: Color.fromRGBO(254, 249, 205, 1),
-              shadows: [
-                Shadow(
-                  offset: Offset(.5, .5),
-                  blurRadius: 1.0,
-                  color: Color.fromRGBO(6, 87, 96, 1),
-                )
-              ],
-            ),
-            textDirection: TextDirection.rtl,
-          ),
-        ),
-      ],
+    return Text(
+      'بسم الله الرحمن الرحيم',
+      style: TextStyle(
+        fontFamily: 'quran',
+        fontSize: fontSize2,
+        fontWeight: FontWeight.bold,
+        color: Color.fromRGBO(254, 249, 205, 1),
+        shadows: [
+          Shadow(
+            offset: Offset(.5, .5),
+            blurRadius: 1.0,
+            color: Color.fromRGBO(4, 92, 100, 1),
+          )
+        ],
+      ),
+      textDirection: TextDirection.rtl,
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'home_quran.dart';
+import 'package:quran_app/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:quran_app/constant.dart';
 
@@ -27,9 +28,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Quran',
-      theme: ThemeData(
-        primarySwatch: Colors.green,
-      ),
+      theme: ThemeApp.Theme_App,
       home: const HomeQuran(),
     );
   }

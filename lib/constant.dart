@@ -12,25 +12,25 @@ final ItemPositionsListener itemPositionsListener =
     ItemPositionsListener.create();
 
 String arabicFont = 'quran';
-double arabicFontSize = 28;
-double mushafFontSize = 40;
+double fontSize1 = 28;
+double fontSize2 = 40;
 
 Uri quranAppurl = Uri.parse('https://github.com/itsherifahmed');
 
 Future saveSettings() async {
   final prefs = await SharedPreferences.getInstance();
-  await prefs.setInt('arabicFontSize', arabicFontSize.toInt());
-  await prefs.setInt('mushafFontSize', mushafFontSize.toInt());
+  await prefs.setInt('arabicFontSize', fontSize1.toInt());
+  await prefs.setInt('mushafFontSize', fontSize2.toInt());
 }
 
 Future getSettings() async {
   try {
     final prefs = await SharedPreferences.getInstance();
-    arabicFontSize = await prefs.getInt('arabicFontSize')!.toDouble();
-    mushafFontSize = await prefs.getInt('mushafFontSize')!.toDouble();
+    fontSize1 = await prefs.getInt('arabicFontSize')!.toDouble();
+    fontSize2 = await prefs.getInt('mushafFontSize')!.toDouble();
   } catch (_) {
-    arabicFontSize = 28;
-    mushafFontSize = 40;
+    fontSize1 = 28;
+    fontSize2 = 40;
   }
 }
 

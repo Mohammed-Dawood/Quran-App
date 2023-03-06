@@ -18,7 +18,7 @@ class _HomeQuranState extends State<HomeQuran> {
       endDrawer: const MyDrawer(),
       floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
       floatingActionButton: FloatingActionButton(
-        tooltip: 'Go to bookmark',
+        tooltip: 'انتقل إلى المرجعية',
         onPressed: () async {
           fabIsClicked = true;
           if (await readBookmark() == true) {
@@ -35,29 +35,13 @@ class _HomeQuranState extends State<HomeQuran> {
             );
           }
         },
-        foregroundColor: const Color.fromRGBO(254, 249, 205, 1),
-        backgroundColor: const Color.fromRGBO(6, 87, 96, 1),
         child: const Icon(Icons.bookmark),
       ),
       appBar: AppBar(
-        centerTitle: true,
-        title: const Text(
+        title: Text(
           "القرآن الكريم",
-          style: TextStyle(
-            fontFamily: 'quran',
-            fontSize: 30,
-            fontWeight: FontWeight.bold,
-            color: Color.fromRGBO(254, 249, 205, 1),
-            shadows: [
-              Shadow(
-                offset: Offset(.5, .5),
-                blurRadius: 1.0,
-                color: Color.fromRGBO(6, 87, 96, 1),
-              )
-            ],
-          ),
+          style: Theme.of(context).textTheme.displaySmall,
         ),
-        backgroundColor: const Color.fromRGBO(6, 87, 96, 1),
       ),
       body: FutureBuilder(
         future: readJson(),
@@ -95,33 +79,28 @@ class _HomeQuranState extends State<HomeQuran> {
         children: [
           for (int i = 0; i < 114; i++)
             TextButton(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 10),
-                    child: Text(
-                      arabicName[i]['name'],
-                      style: const TextStyle(
-                        fontSize: 30,
-                        color: Color.fromRGBO(254, 249, 205, 1),
-                        fontFamily: 'quran',
-                        shadows: [
-                          Shadow(
-                            offset: Offset(.5, .5),
-                            blurRadius: 1.0,
-                            color: Color.fromRGBO(6, 87, 96, 1),
-                          )
-                        ],
+              child: Padding(
+                padding: const EdgeInsets.only(right: 5),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        top: 10,
+                        right: 10,
                       ),
-                      textDirection: TextDirection.rtl,
+                      child: Text(
+                        arabicName[i]['name'],
+                        style: Theme.of(context).textTheme.displaySmall,
+                        textDirection: TextDirection.rtl,
+                      ),
                     ),
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  ArabicSuraNumber(i: i),
-                ],
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    ArabicSuraNumber(i: i),
+                  ],
+                ),
               ),
               onPressed: () {
                 fabIsClicked = false;
