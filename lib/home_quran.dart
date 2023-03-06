@@ -4,14 +4,14 @@ import 'surah_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:quran_app/arabic_sura_number.dart';
 
-class IndexPage extends StatefulWidget {
-  const IndexPage({Key? key}) : super(key: key);
+class HomeQuran extends StatefulWidget {
+  const HomeQuran({Key? key}) : super(key: key);
 
   @override
-  State<IndexPage> createState() => _IndexPageState();
+  State<HomeQuran> createState() => _HomeQuranState();
 }
 
-class _IndexPageState extends State<IndexPage> {
+class _HomeQuranState extends State<HomeQuran> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

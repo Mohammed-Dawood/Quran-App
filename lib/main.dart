@@ -1,4 +1,4 @@
-import 'index.dart';
+import 'home_quran.dart';
 import 'package:flutter/material.dart';
 import 'package:quran_app/constant.dart';
 
@@ -30,7 +30,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: const IndexPage(),
+      home: const HomeQuran(),
     );
   }
 }
