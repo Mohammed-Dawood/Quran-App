@@ -40,6 +40,8 @@ dependencies:
   share_plus: ^6.3.1
   url_launcher: ^6.1.10
   flutter_launcher_icons: ^0.12.0
+  flutter_native_splash: ^2.2.19
+  animated_splash_screen: ^1.3.0
   
 
 dev_dependencies:
@@ -54,6 +56,16 @@ flutter_icons:
   image_path: "assets/logo.png"    
   adaptive_icon_background: "#022C33"
   adaptive_icon_foreground: "assets/logo_android.png"
+
+
+flutter_native_splash:
+  android: true
+  ios: true
+  web: truea
+  color: "#065760"
+  android_12:
+    color: "#065760"
+
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
