@@ -1,5 +1,5 @@
-import 'home_quran.dart';
-import 'package:quran_app/theme.dart';
+import 'package:quran_app/home.dart';
+import 'package:quran_app/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:quran_app/constant.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
@@ -44,7 +44,7 @@ class _MyAppState extends State<MyApp> {
         duration: 2500,
         splashIconSize: 300,
         curve: Curves.easeInQuad,
-        nextScreen: const HomeQuran(),
+        nextScreen: const Home(),
         splash: 'assets/logo_drawer.png',
         backgroundColor: Color.fromRGBO(6, 87, 96, 1),
         splashTransition: SplashTransition.fadeTransition,

@@ -8,19 +8,19 @@ class ThemeApp {
       backgroundColor: const Color.fromRGBO(6, 87, 96, 1),
       iconTheme: IconThemeData(
         color: const Color.fromRGBO(254, 249, 205, 1),
+        size: 25,
       ),
     ),
     textTheme: TextTheme(
       displaySmall: TextStyle(
-        fontSize: 25,
+        fontSize: 30,
         fontFamily: 'quran',
-        fontWeight: FontWeight.bold,
         color: const Color.fromRGBO(254, 249, 205, 1),
         shadows: [
           Shadow(
             blurRadius: 1.0,
             offset: Offset(.5, .5),
-            color: Color.fromRGBO(4, 92, 100, 1),
+            color: Color.fromRGBO(6, 87, 96, 1),
           )
         ],
       ),

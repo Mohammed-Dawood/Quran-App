@@ -146,7 +146,7 @@ class _MyDrawerState extends State<MyDrawer> {
               Slider(
                 activeColor: const Color.fromRGBO(6, 87, 96, 1),
                 value: fontSize2,
-                min: 10,
+                min: 20,
                 max: 40,
                 onChanged: (value) {
                   setState(

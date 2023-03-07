@@ -1,4 +1,4 @@
-import 'constant.dart';
+import '../constant.dart';
 import 'package:flutter/material.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
@@ -45,7 +45,7 @@ class _SurahBuilderState extends State<SurahBuilder> {
             style: TextStyle(
               fontSize: fontSize2,
               fontFamily: arabicFont,
-              color: Color.fromARGB(255, 254, 229, 205),
+              color: const Color.fromRGBO(254, 249, 205, 1),
               shadows: const [
                 Shadow(
                   offset: Offset(.5, .5),
@@ -189,7 +189,7 @@ class _SurahBuilderState extends State<SurahBuilder> {
           actions: [
             TextButton(
               child: const Icon(
-                size: 30,
+                size: 25,
                 Icons.arrow_forward_ios,
                 color: Color.fromRGBO(254, 249, 205, 1),
               ),
@@ -202,7 +202,7 @@ class _SurahBuilderState extends State<SurahBuilder> {
             message: 'Mushaf Mode',
             child: TextButton(
               child: const Icon(
-                size: 30,
+                size: 25,
                 Icons.chrome_reader_mode,
                 color: Color.fromRGBO(254, 249, 205, 1),
               ),
@@ -235,15 +235,14 @@ class RetunBasmala extends StatelessWidget {
     return Text(
       'بسم الله الرحمن الرحيم',
       style: TextStyle(
-        fontFamily: 'quran',
         fontSize: fontSize2,
-        fontWeight: FontWeight.bold,
-        color: Color.fromRGBO(254, 249, 205, 1),
-        shadows: [
+        fontFamily: arabicFont,
+        color: const Color.fromRGBO(254, 249, 205, 1),
+        shadows: const [
           Shadow(
             offset: Offset(.5, .5),
             blurRadius: 1.0,
-            color: Color.fromRGBO(4, 92, 100, 1),
+            color: Color.fromRGBO(6, 87, 96, 1),
           )
         ],
       ),
