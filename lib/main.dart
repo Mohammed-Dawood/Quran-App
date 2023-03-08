@@ -1,13 +1,15 @@
 import 'package:quran_app/home.dart';
-import 'package:quran_app/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:quran_app/constant.dart';
+import 'package:quran_app/theme/theme.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initialization(null);
+  await GetStorage.init();
   runApp(const MyApp());
 }
 

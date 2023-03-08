@@ -13,7 +13,7 @@ class ThemeApp {
     ),
     textTheme: TextTheme(
       displaySmall: TextStyle(
-        fontSize: 30,
+        fontSize: 25,
         fontFamily: 'quran',
         color: const Color.fromRGBO(254, 249, 205, 1),
         shadows: [

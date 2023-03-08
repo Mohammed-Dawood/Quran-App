@@ -1,6 +1,6 @@
-import '../constant.dart';
 import 'surah_builder.dart';
 import 'package:flutter/material.dart';
+import 'package:quran_app/constant.dart';
 import 'package:quran_app/quran_read/arabic_sura_number.dart';
 
 class HomeQuranRead extends StatefulWidget {
@@ -106,7 +106,7 @@ class _HomeQuranReadState extends State<HomeQuranRead> {
                       child: Text(
                         arabicName[i]['name'],
                         style: TextStyle(
-                          fontSize: fontSize1,
+                          fontSize: fontSize2,
                           fontFamily: arabicFont,
                           color: const Color.fromRGBO(254, 249, 205, 1),
                           shadows: const [

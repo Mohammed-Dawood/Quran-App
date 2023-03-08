@@ -58,7 +58,7 @@ class _MyDrawerState extends State<MyDrawer> {
                       textDirection: TextDirection.rtl,
                       child: Center(
                         child: Text(
-                          'حجم خط السور',
+                          'حجم خط المسبحة',
                           style: TextStyle(
                             fontSize: 20,
                             color: Color.fromRGBO(6, 87, 96, 1),
@@ -124,7 +124,7 @@ class _MyDrawerState extends State<MyDrawer> {
                       textDirection: TextDirection.rtl,
                       child: Center(
                         child: Text(
-                          'حجم خط الايات',
+                          'حجم خط القرآن',
                           style: TextStyle(
                             fontSize: 20,
                             color: Color.fromRGBO(6, 87, 96, 1),
