@@ -19,6 +19,9 @@ class SurahBuilder extends StatefulWidget {
 class _SurahBuilderState extends State<SurahBuilder> {
   bool view = true;
 
+  bool isScreenWidth(BuildContext context) =>
+      MediaQuery.of(context).size.width < 600;
+
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) => jumbToAyah());
@@ -77,12 +80,26 @@ class _SurahBuilderState extends State<SurahBuilder> {
     return SafeArea(
       bottom: false,
       child: Container(
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            fit: BoxFit.cover,
-            image: AssetImage('assets/background.png'),
-          ),
-        ),
+        decoration: MediaQuery.of(context).orientation == Orientation.portrait
+            ? (isScreenWidth(context))
+                ? BoxDecoration(
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: AssetImage('assets/background.png'),
+                    ),
+                  )
+                : BoxDecoration(
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: AssetImage('assets/background_portrait.png'),
+                    ),
+                  )
+            : BoxDecoration(
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: AssetImage('assets/background_landscape.png'),
+                ),
+              ),
         child: view
             ? ScrollablePositionedList.builder(
                 itemBuilder: (BuildContext context, int index) {
@@ -184,12 +201,13 @@ class _SurahBuilderState extends State<SurahBuilder> {
     int LengthOfSura = noOfVerses[widget.sura];
 
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
           actions: [
             TextButton(
-              child: const Icon(
-                size: 25,
+              child: Icon(
+                size: isScreenWidth(context) ? 25 : 28,
                 Icons.arrow_forward_ios,
                 color: Color.fromRGBO(254, 249, 205, 1),
               ),
@@ -201,8 +219,8 @@ class _SurahBuilderState extends State<SurahBuilder> {
           leading: Tooltip(
             message: 'Mushaf Mode',
             child: TextButton(
-              child: const Icon(
-                size: 25,
+              child: Icon(
+                size: isScreenWidth(context) ? 25 : 28,
                 Icons.chrome_reader_mode,
                 color: Color.fromRGBO(254, 249, 205, 1),
               ),
@@ -217,7 +235,9 @@ class _SurahBuilderState extends State<SurahBuilder> {
           ),
           title: Text(
             widget.suraName,
-            style: Theme.of(context).textTheme.displaySmall,
+            style: isScreenWidth(context)
+                ? Theme.of(context).textTheme.displaySmall
+                : Theme.of(context).textTheme.displayMedium,
           ),
           backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
         ),

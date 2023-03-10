@@ -14,6 +14,9 @@ class _HomeMasbahaState extends State<HomeMasbaha> {
   final box = GetStorage();
   int get masbahaNumber => box.read('newMasbahaNumber') ?? 0;
 
+  bool isScreenWidth(BuildContext context) =>
+      MediaQuery.of(context).size.width < 600;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +24,9 @@ class _HomeMasbahaState extends State<HomeMasbaha> {
       appBar: AppBar(
         title: Text(
           "المسبحة الالكترونية",
-          style: Theme.of(context).textTheme.displaySmall,
+          style: isScreenWidth(context)
+              ? Theme.of(context).textTheme.displaySmall
+              : Theme.of(context).textTheme.displayMedium,
         ),
         leading: Icon(
           Icons.abc,
@@ -29,8 +34,8 @@ class _HomeMasbahaState extends State<HomeMasbaha> {
         ),
         actions: [
           TextButton(
-            child: const Icon(
-              size: 25,
+            child: Icon(
+              size: isScreenWidth(context) ? 25 : 28,
               Icons.arrow_forward_ios,
               color: Color.fromRGBO(254, 249, 205, 1),
             ),
@@ -99,12 +104,26 @@ class _HomeMasbahaState extends State<HomeMasbaha> {
         },
       ),
       body: Container(
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            fit: BoxFit.cover,
-            image: AssetImage('assets/background.png'),
-          ),
-        ),
+        decoration: MediaQuery.of(context).orientation == Orientation.portrait
+            ? (isScreenWidth(context))
+                ? BoxDecoration(
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: AssetImage('assets/background.png'),
+                    ),
+                  )
+                : BoxDecoration(
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: AssetImage('assets/background_portrait.png'),
+                    ),
+                  )
+            : BoxDecoration(
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: AssetImage('assets/background_landscape.png'),
+                ),
+              ),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

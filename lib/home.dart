@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:quran_app/drawer/my_drawer.dart';
-import 'package:quran_app/qiblah/homa_qiblah.dart';
+import 'package:quran_app/qiblah/home_qiblah.dart';
 import 'package:quran_app/masbaha/home_masbaha.dart';
 import 'package:quran_app/quran_read/home_quran_read.dart';
 import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
+
+  bool isScreenWidth(BuildContext context) =>
+      MediaQuery.of(context).size.width < 600;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +19,13 @@ class Home extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           "الصفحة الرئيسية",
-          style: Theme.of(context).textTheme.displaySmall,
+          style: isScreenWidth(context)
+              ? Theme.of(context).textTheme.displaySmall
+              : Theme.of(context).textTheme.displayMedium,
+        ),
+        iconTheme: IconThemeData(
+          color: const Color.fromRGBO(254, 249, 205, 1),
+          size: isScreenWidth(context) ? 25 : 28,
         ),
       ),
       bottomNavigationBar: FloatingNavbar(
@@ -79,12 +88,26 @@ class Home extends StatelessWidget {
         },
       ),
       body: Container(
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            fit: BoxFit.cover,
-            image: AssetImage('assets/screen.png'),
-          ),
-        ),
+        decoration: MediaQuery.of(context).orientation == Orientation.portrait
+            ? isScreenWidth(context)
+                ? BoxDecoration(
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: AssetImage('assets/screen.png'),
+                    ),
+                  )
+                : BoxDecoration(
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: AssetImage('assets/screen_portrait.png'),
+                    ),
+                  )
+            : BoxDecoration(
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: AssetImage('assets/screen_landscape.png'),
+                ),
+              ),
       ),
     );
   }

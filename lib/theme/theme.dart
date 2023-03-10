@@ -6,14 +6,22 @@ class ThemeApp {
     appBarTheme: AppBarTheme(
       centerTitle: true,
       backgroundColor: const Color.fromRGBO(6, 87, 96, 1),
-      iconTheme: IconThemeData(
-        color: const Color.fromRGBO(254, 249, 205, 1),
-        size: 25,
-      ),
     ),
     textTheme: TextTheme(
       displaySmall: TextStyle(
         fontSize: 25,
+        fontFamily: 'quran',
+        color: const Color.fromRGBO(254, 249, 205, 1),
+        shadows: [
+          Shadow(
+            blurRadius: 1.0,
+            offset: Offset(.5, .5),
+            color: Color.fromRGBO(6, 87, 96, 1),
+          )
+        ],
+      ),
+      displayMedium: TextStyle(
+        fontSize: 28,
         fontFamily: 'quran',
         color: const Color.fromRGBO(254, 249, 205, 1),
         shadows: [
