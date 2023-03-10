@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:quran_app/constant.dart';
 import 'package:quran_app/theme/theme.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 
@@ -52,6 +53,7 @@ class _MyAppState extends State<MyApp> {
         curve: Curves.easeInQuad,
         nextScreen: const Home(),
         splash: 'assets/logo_drawer.png',
+        pageTransitionType: PageTransitionType.fade,
         backgroundColor: Color.fromRGBO(6, 87, 96, 1),
         splashTransition: SplashTransition.fadeTransition,
         animationDuration: const Duration(milliseconds: 3000),

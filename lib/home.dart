@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quran_app/salat/home_salat.dart';
 import 'package:quran_app/drawer/my_drawer.dart';
 import 'package:quran_app/qiblah/home_qiblah.dart';
 import 'package:quran_app/masbaha/home_masbaha.dart';
@@ -48,6 +49,10 @@ class Home extends StatelessWidget {
         ),
         items: [
           FloatingNavbarItem(
+            icon: Icons.watch_later,
+            title: "الصلاة",
+          ),
+          FloatingNavbarItem(
             icon: Icons.explore,
             title: "القبلة",
           ),
@@ -65,7 +70,7 @@ class Home extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => HomeQiblah(),
+                builder: (context) => HomeSalat(),
               ),
             );
           }
@@ -73,11 +78,19 @@ class Home extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => HomeMasbaha(),
+                builder: (context) => HomeQiblah(),
               ),
             );
           }
           if (screenNumber == 2) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => HomeMasbaha(),
+              ),
+            );
+          }
+          if (screenNumber == 3) {
             Navigator.push(
               context,
               MaterialPageRoute(
