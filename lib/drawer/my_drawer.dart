@@ -11,9 +11,13 @@ class MyDrawer extends StatefulWidget {
 }
 
 class _MyDrawerState extends State<MyDrawer> {
+  bool isScreenWidth(BuildContext context) =>
+      MediaQuery.of(context).size.width < 600;
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      width: isScreenWidth(context) ? 300 : 500,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -42,7 +46,7 @@ class _MyDrawerState extends State<MyDrawer> {
                     Text(
                       '${fontSize1.toInt()} ',
                       style: TextStyle(
-                        fontSize: 20,
+                        fontSize: isScreenWidth(context) ? 20 : 22,
                         color: Color.fromRGBO(6, 87, 96, 1),
                         fontFamily: 'quran',
                         shadows: [
@@ -60,7 +64,7 @@ class _MyDrawerState extends State<MyDrawer> {
                         child: Text(
                           'حجم خط المسبحة',
                           style: TextStyle(
-                            fontSize: 20,
+                            fontSize: isScreenWidth(context) ? 20 : 22,
                             color: Color.fromRGBO(6, 87, 96, 1),
                             fontFamily: 'quran',
                             shadows: [
@@ -108,7 +112,7 @@ class _MyDrawerState extends State<MyDrawer> {
                     Text(
                       '${fontSize2.toInt()} ',
                       style: TextStyle(
-                        fontSize: 20,
+                        fontSize: isScreenWidth(context) ? 20 : 22,
                         color: Color.fromRGBO(6, 87, 96, 1),
                         fontFamily: 'quran',
                         shadows: [
@@ -126,7 +130,7 @@ class _MyDrawerState extends State<MyDrawer> {
                         child: Text(
                           'حجم خط القرآن',
                           style: TextStyle(
-                            fontSize: 20,
+                            fontSize: isScreenWidth(context) ? 20 : 22,
                             color: Color.fromRGBO(6, 87, 96, 1),
                             fontFamily: 'quran',
                             shadows: [
